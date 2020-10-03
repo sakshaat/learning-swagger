@@ -1,0 +1,90 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Basic Calculator App
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths
+basePath: /
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /add:
+    x-swagger-router-controller: calculator
+    get:
+      description: Adds two integers
+      operationId: add
+      parameters:
+        - name: x
+          in: query
+          description: first int
+          required: true
+          type: integer
+        - name: y
+          in: query
+          description: second int
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/CalculatorResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /subtract:
+    x-swagger-router-controller: calculator
+    get:
+      description: Subtracts two integers
+      operationId: subtract
+      parameters:
+        - name: x
+          in: query
+          description: first int
+          required: true
+          type: integer
+        - name: y
+          in: query
+          description: second int
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/CalculatorResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  CalculatorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
