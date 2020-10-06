@@ -1,6 +1,6 @@
 # Basic Swagger/OpenAPI Project
 
-Learning how to use Swagger/Open API with NodeJS/Express.
+Learning how to use Swagger/Open API with NodeJS/Express. Also trying out GitHub Actions. It was actually suprisingly painless to set it up to run basic tests. Cool. 
 
 ## Basic commands
 - Run server - `npm start`/`swagger project start`
